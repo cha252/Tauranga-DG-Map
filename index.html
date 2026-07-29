@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Site Mapper</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #10141b;
+    --panel: #171c26;
+    --panel-raised: #1e2531;
+    --line: #2a3242;
+    --text: #eceef2;
+    --text-dim: #8992a3;
+    --text-faint: #565f70;
+    --amber: #e8a23b;
+    --amber-dim: #a97a35;
+    --teal: #4fb8a8;
+    --red: #d9695f;
+    --blue: #4f8fe0;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-display);
+    overflow: hidden;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ---------- Sidebar ---------- */
+  #sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    height: 100vh;
+    z-index: 10;
+  }
+
+  #brand {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  #brand .mark {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  #brand h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  #brand p {
+    margin: 6px 0 0;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  #upload-zone {
+    margin: 16px 20px;
+    border: 1.5px dashed var(--line);
+    border-radius: 10px;
+    padding: 22px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  #upload-zone:hover, #upload-zone.drag {
+    border-color: var(--amber-dim);
+    background: rgba(232, 162, 59, 0.05);
+  }
+
+  #upload-zone.loaded {
+    border-style: solid;
+    border-color: var(--teal);
+    background: rgba(79, 184, 168, 0.07);
+  }
+
+  #upload-zone.error {
+    border-style: solid;
+    border-color: var(--red);
+    background: rgba(217, 105, 95, 0.07);
+  }
+
+  #upload-zone svg { display:block; margin: 0 auto 10px; opacity: 0.7; }
+  #upload-zone.loaded svg, #upload-zone.error svg { opacity: 1; }
+
+  #upload-zone .primary {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #upload-zone .secondary {
+    font-size: 11.5px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+  }
+
+  #upload-zone.loaded .secondary { color: var(--teal); }
+  #upload-zone.error .secondary { color: var(--red); }
+
+  #file-input { display: none; }
+
+  #reload-zone {
+    display: none;
+    margin: 0 20px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-faint);
+  }
+
+  #reload-zone a {
+    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+
+  #reload-zone a:hover { color: var(--amber); }
+
+  #status-bar {
+    margin: 0 20px 14px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+    display: none;
+    flex-shrink: 0;
+  }
+
+  #status-bar.show { display: block; }
+
+  #progress-track {
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  #progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--amber);
+    transition: width 0.2s ease;
+  }
+
+  #list-header {
+    padding: 12px 20px 8px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  #list-header h2 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  #list-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  #cache-actions {
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .text-btn {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-faint);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    flex-shrink: 0;
+  }
+
+  .text-btn:hover { color: var(--amber); }
+
+  #job-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 6px 0 20px;
+  }
+
+  #job-list::-webkit-scrollbar { width: 8px; }
+  #job-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  #job-list::-webkit-scrollbar-track { background: transparent; }
+
+  .job-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: background 0.1s ease;
+  }
+
+  .job-row:hover { background: var(--panel-raised); }
+  .job-row.active { background: var(--panel-raised); border-left-color: var(--amber); }
+
+  .job-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink);
+    background: var(--teal);
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    white-space: nowrap;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .job-row.failed .job-tag { background: var(--red); }
+
+  .job-info { min-width: 0; flex: 1; }
+
+  .job-address {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .job-row.failed .job-address { color: var(--text-dim); }
+
+  .job-note {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--red);
+    margin-top: 3px;
+  }
+
+  #empty-state {
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Map ---------- */
+  #map-wrap { position: relative; min-width: 0; }
+  #map { height: 100%; width: 100%; background: var(--ink); }
+
+  .leaflet-popup-content-wrapper {
+    background: var(--panel-raised);
+    color: var(--text);
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .leaflet-popup-tip { background: var(--panel-raised); border: 1px solid var(--line); }
+  .leaflet-popup-content { font-family: var(--font-display); font-size: 13px; margin: 10px 12px; }
+  .popup-job { font-family: var(--font-mono); font-size: 10.5px; color: var(--amber); letter-spacing: 0.05em; margin-bottom: 3px; }
+  .leaflet-container a.leaflet-popup-close-button { color: var(--text-dim); }
+
+  .pin-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    border: 2px solid var(--ink);
+  }
+  .pin-icon span {
+    transform: rotate(45deg);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  #hint {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 5;
+    background: rgba(23, 28, 38, 0.9);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    max-width: 300px;
+    line-height: 1.5;
+  }
+
+  #legend {
+    position: absolute;
+    bottom: 24px;
+    left: 16px;
+    z-index: 5;
+    background: rgba(23, 28, 38, 0.9);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    display: none;
+  }
+
+  #legend.show { display: block; }
+
+  #legend .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  #legend .legend-row:first-child { margin-top: 0; }
+
+  #legend .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 760px) {
+    #app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    #sidebar { border-right: none; border-bottom: 1px solid var(--line); height: auto; max-height: 46vh; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="sidebar">
+    <div id="brand">
+      <div class="mark">JOB SITE MAPPER</div>
+      <h1>Plot jobs from a spreadsheet</h1>
+      <p>Upload a workbook with <strong style="color:var(--text)">Job</strong> and <strong style="color:var(--text)">Site</strong> columns. Site addresses are geocoded and dropped as pins on the map. Only sites in the lower North Island are mapped.</p>
+    </div>
+
+    <div id="upload-zone">
+      <svg id="upload-icon-default" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8992a3" stroke-width="1.6"><path d="M12 3v12m0-12l-4 4m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+      <svg id="upload-icon-loaded" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4fb8a8" stroke-width="1.8" style="display:none"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg id="upload-icon-error" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d9695f" stroke-width="1.8" style="display:none"><path d="M12 9v4m0 4h.01M10.29 3.86l-8.18 14.18A2 2 0 003.82 21h16.36a2 2 0 001.71-3l-8.18-14.14a2 2 0 00-3.42 0z"/></svg>
+      <div class="primary" id="upload-primary">Drop spreadsheet or click to browse</div>
+      <div class="secondary" id="upload-secondary">.xlsx · .xls · .csv</div>
+    </div>
+    <input type="file" id="file-input" accept=".xlsx,.xls,.csv" />
+
+    <div id="reload-zone">
+      Auto-loaded from repo · <a href="#" id="reload-link">reload latest</a>
+    </div>
+
+    <div id="status-bar">
+      <div id="status-text">Geocoding 0 / 0</div>
+      <div id="progress-track"><div id="progress-fill"></div></div>
+    </div>
+
+    <div id="list-header">
+      <h2>Locations</h2>
+      <span id="list-count"></span>
+    </div>
+    <div id="cache-actions">
+      <button id="export-cache-btn" class="text-btn" title="Download geocode-cache.json to commit to the repo">Export cache.json</button>
+      <button id="clear-cache-btn" class="text-btn" title="Force fresh lookups next time (this browser only)">Clear cache</button>
+    </div>
+    <div id="job-list">
+      <div id="empty-state">No spreadsheet loaded yet. Once you upload one, every mapped job will show up here — click a row to jump to it on the map.</div>
+    </div>
+  </div>
+
+  <div id="map-wrap">
+    <div id="hint">Waiting for a spreadsheet. Columns needed: <span style="color:var(--text)">Job</span>, <span style="color:var(--text)">Site</span>.</div>
+    <div id="legend">
+      <div class="legend-row"><span class="legend-dot" style="background:var(--red)"></span>OH &mdash; overhead</div>
+      <div class="legend-row"><span class="legend-dot" style="background:var(--blue)"></span>UG &mdash; underground</div>
+      <div class="legend-row" id="legend-other" style="display:none"><span class="legend-dot" style="background:var(--amber)"></span>Other / unspecified</div>
+    </div>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(){
+  const uploadZone = document.getElementById('upload-zone');
+  const fileInput = document.getElementById('file-input');
+  const reloadZone = document.getElementById('reload-zone');
+  const reloadLink = document.getElementById('reload-link');
+  const uploadPrimary = document.getElementById('upload-primary');
+  const uploadSecondary = document.getElementById('upload-secondary');
+  const iconDefault = document.getElementById('upload-icon-default');
+  const iconLoaded = document.getElementById('upload-icon-loaded');
+  const iconError = document.getElementById('upload-icon-error');
+
+  function setUploadState(state, primaryText, secondaryText){
+    uploadZone.classList.remove('loaded', 'error');
+    iconDefault.style.display = 'none';
+    iconLoaded.style.display = 'none';
+    iconError.style.display = 'none';
+    if (state === 'loaded'){
+      uploadZone.classList.add('loaded');
+      iconLoaded.style.display = 'block';
+    } else if (state === 'error'){
+      uploadZone.classList.add('error');
+      iconError.style.display = 'block';
+    } else {
+      iconDefault.style.display = 'block';
+    }
+    uploadPrimary.textContent = primaryText;
+    uploadSecondary.textContent = secondaryText;
+  }
+  const jobList = document.getElementById('job-list');
+  const listCount = document.getElementById('list-count');
+  const clearCacheBtn = document.getElementById('clear-cache-btn');
+  const exportCacheBtn = document.getElementById('export-cache-btn');
+  clearCacheBtn.addEventListener('click', () => {
+    clearGeocodeCache();
+    clearCacheBtn.textContent = 'Cache cleared';
+    setTimeout(() => { clearCacheBtn.textContent = 'Clear cache'; }, 1500);
+  });
+  exportCacheBtn.addEventListener('click', () => {
+    exportGeocodeCache();
+    exportCacheBtn.textContent = 'Downloaded ✓';
+    setTimeout(() => { exportCacheBtn.textContent = 'Export cache.json'; }, 1500);
+  });
+  const statusBar = document.getElementById('status-bar');
+  const statusText = document.getElementById('status-text');
+  const progressFill = document.getElementById('progress-fill');
+  const hint = document.getElementById('hint');
+  const legend = document.getElementById('legend');
+  const legendOther = document.getElementById('legend-other');
+
+  const map = L.map('map', { zoomControl: true, attributionControl: true }).setView([-40.4, 175.6], 7);
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS community',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Labels/roads/place-names on top of the imagery so streets and towns stay legible.
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19,
+    pane: 'shadowPane' // renders above tiles/overlays but below markers, without adding a legend entry
+  }).addTo(map);
+
+  let markers = {};   // job -> marker
+  let jobs = [];       // {job, address, status, lat, lng, note}
+  let markersLayer = L.layerGroup().addTo(map);
+
+  // Type -> pin color. OH = overhead (red), UG = underground (blue).
+  // Anything else, or a missing Type column, falls back to amber.
+  const TYPE_COLORS = { OH: 'var(--red)', UG: 'var(--blue)' };
+
+  function colorForType(type){
+    const key = (type || '').trim().toUpperCase();
+    return TYPE_COLORS[key] || 'var(--amber)';
+  }
+
+  function pinIcon(color){
+    return L.divIcon({
+      className: '',
+      html: '<div class="pin-icon" style="background:' + (color || 'var(--amber)') + '"></div>',
+      iconSize: [26, 26],
+      iconAnchor: [13, 26],
+      popupAnchor: [0, -24]
+    });
+  }
+
+  function setStatus(text, pct){
+    statusBar.classList.add('show');
+    statusText.textContent = text;
+    progressFill.style.width = (pct || 0) + '%';
+  }
+
+  function clearStatus(){
+    statusBar.classList.remove('show');
+  }
+
+  // ---------- Upload handling ----------
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('drag');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => {
+    if (e.target.files.length) handleFile(e.target.files[0]);
+  });
+
+  function handleFile(file){
+    setUploadState('default', file.name, 'Reading…');
+    const reader = new FileReader();
+    reader.onload = function(e){
+      parseWorkbookBuffer(e.target.result, file.name);
+    };
+    reader.onerror = function(){
+      setUploadState('error', file.name, 'Failed to open file');
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function parseWorkbookBuffer(buffer, filename){
+    try {
+      const data = new Uint8Array(buffer);
+      const wb = XLSX.read(data, { type: 'array' });
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      processRows(rows, filename);
+    } catch(err) {
+      setUploadState('error', filename, 'Could not read this file');
+      hint.textContent = 'Could not read that file. Make sure it\'s a valid .xlsx, .xls, or .csv.';
+      hint.style.color = 'var(--red)';
+      hint.style.display = 'block';
+    }
+  }
+
+  // ---------- Auto-load from repo ----------
+  // If a spreadsheet with one of these names sits next to this HTML file
+  // (e.g. committed to the same GitHub repo / Pages site), it's loaded
+  // automatically on page load — no upload needed. Requires the page to be
+  // served over http(s) (GitHub Pages, Netlify, `python -m http.server`,
+  // etc.) — browsers block this kind of fetch when opening the file
+  // directly from disk (file://).
+  const AUTO_LOAD_FILENAMES = ['DGS LIST.xlsx', 'DGS LIST.xls', 'DGS LIST.csv'];
+
+  async function tryAutoLoad(){
+    for (const name of AUTO_LOAD_FILENAMES){
+      try {
+        const res = await fetch(encodeURI('./' + name), { cache: 'no-store' });
+        if (!res.ok) continue;
+        const buffer = await res.arrayBuffer();
+        setUploadState('default', name, 'Reading…');
+        parseWorkbookBuffer(buffer, name);
+        showReloadLink(name);
+        return true;
+      } catch(err){
+        // not found, blocked by CORS/file://, or network error — fall through
+      }
+    }
+    return false;
+  }
+
+  function showReloadLink(name){
+    reloadZone.style.display = 'block';
+    reloadLink.dataset.filename = name;
+  }
+
+  reloadLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const name = reloadLink.dataset.filename;
+    if (!name) return;
+    reloadLink.textContent = 'reloading…';
+    try {
+      const res = await fetch(encodeURI('./' + name), { cache: 'no-store' });
+      if (res.ok){
+        const buffer = await res.arrayBuffer();
+        setUploadState('default', name, 'Reading…');
+        parseWorkbookBuffer(buffer, name);
+      }
+    } catch(err){
+      // ignore — leave existing data on screen if the re-fetch fails
+    }
+    reloadLink.textContent = 'reload latest';
+  });
+
+  window.addEventListener('DOMContentLoaded', tryAutoLoad);
+
+  function findKey(row, candidates){
+    const keys = Object.keys(row);
+    for (const c of candidates){
+      const hit = keys.find(k => k.trim().toLowerCase() === c);
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  function processRows(rows, filename){
+    if (!rows.length){
+      setUploadState('error', filename, 'File is empty');
+      hint.textContent = 'That spreadsheet looks empty.';
+      hint.style.color = 'var(--red)';
+      hint.style.display = 'block';
+      return;
+    }
+    const jobKey = findKey(rows[0], ['job', 'job id', 'jobid', 'id']);
+    const addrKey = findKey(rows[0], ['site', 'site address', 'street address', 'location', 'address']);
+    const typeKey = findKey(rows[0], ['type']);
+
+    if (!jobKey || !addrKey){
+      setUploadState('error', filename, 'Missing "Job" / "Site" columns');
+      hint.textContent = 'Couldn\'t find "Job" and "Site" columns. Check your headers and try again.';
+      hint.style.color = 'var(--red)';
+      hint.style.display = 'block';
+      return;
+    }
+
+    jobs = rows
+      .map(r => ({
+        job: String(r[jobKey]).trim(),
+        address: String(r[addrKey]).trim(),
+        type: typeKey ? String(r[typeKey]).trim() : '',
+        status: 'pending',
+        note: ''
+      }))
+      .filter(j => j.job && j.address);
+
+    if (!jobs.length){
+      setUploadState('error', filename, 'No valid Job/Site rows found');
+      hint.textContent = 'No rows with both a Job and a Site were found.';
+      hint.style.color = 'var(--red)';
+      hint.style.display = 'block';
+      return;
+    }
+
+    setUploadState('loaded', filename, jobs.length + ' rows loaded');
+    hint.style.display = 'none';
+    markersLayer.clearLayers();
+    markers = {};
+
+    const hasOther = jobs.some(j => !['OH', 'UG'].includes((j.type || '').trim().toUpperCase()));
+    legendOther.style.display = hasOther ? 'flex' : 'none';
+    legend.classList.add('show');
+
+    renderList();
+    geocodeAll();
+  }
+
+  // ---------- Geocoding (Nominatim, rate-limited to 1 req/sec) ----------
+  // Two-layer cache:
+  //  1. geocode-cache.json committed in the repo (shared across everyone —
+  //     loaded fresh on every page load, requires the page served over http(s))
+  //  2. localStorage (this browser only — catches new lookups between exports)
+  // On load, repo entries are merged in wherever localStorage doesn't
+  // already have that address, then any new lookups get saved to
+  // localStorage. Use "Export cache" to download the combined result as
+  // geocode-cache.json and commit it back to the repo to share it.
+  // v2: added lower North Island region restriction, so old cached
+  // results (which weren't region-checked) are invalidated.
+  const CACHE_KEY = 'jobSiteMapper.geocodeCache.v2';
+  const REPO_CACHE_FILENAME = 'geocode-cache.json';
+  const geocodeCache = loadLocalCache();
+
+  // Roughly Whanganui / Manawatū / southern Hawke's Bay / Wairarapa /
+  // Wellington / Kapiti Coast. West, South, East, North in lon/lat.
+  const NZ_LOWER_NI_BBOX = { west: 174.2, south: -41.75, east: 177.0, north: -39.1 };
+
+  function inRegion(lat, lng){
+    return lat >= NZ_LOWER_NI_BBOX.south && lat <= NZ_LOWER_NI_BBOX.north &&
+           lng >= NZ_LOWER_NI_BBOX.west && lng <= NZ_LOWER_NI_BBOX.east;
+  }
+
+  function loadLocalCache(){
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch(e){
+      return {};
+    }
+  }
+
+  function saveLocalCache(){
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(geocodeCache));
+    } catch(e){
+      // storage unavailable or full — caching just won't persist, no need to block on it
+    }
+  }
+
+  // Fetches geocode-cache.json from next to this page (if the repo has one)
+  // and merges any entries not already known locally. Lookups wait on this
+  // so a repo-cached address doesn't trigger a redundant network request.
+  const repoCacheReady = (async function loadRepoCache(){
+    try {
+      const res = await fetch(encodeURI('./' + REPO_CACHE_FILENAME), { cache: 'no-store' });
+      if (res.ok){
+        const repoCache = await res.json();
+        for (const k in repoCache){
+          if (!Object.prototype.hasOwnProperty.call(geocodeCache, k)) geocodeCache[k] = repoCache[k];
+        }
+      }
+    } catch(e){
+      // not found, blocked by CORS/file://, or invalid JSON — just fall back to localStorage only
+    }
+  })();
+
+  function cacheKey(address){
+    return address.trim().toLowerCase();
+  }
+
+  async function geocodeAddress(address){
+    await repoCacheReady;
+    const key = cacheKey(address);
+    if (Object.prototype.hasOwnProperty.call(geocodeCache, key)){
+      const cached = geocodeCache[key];
+      const outOfRegion = cached === 'out-of-region';
+      return { result: outOfRegion ? null : cached, fromCache: true, outOfRegion };
+    }
+    const bbox = NZ_LOWER_NI_BBOX;
+    const viewbox = bbox.west + ',' + bbox.north + ',' + bbox.east + ',' + bbox.south;
+    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=nz'
+      + '&viewbox=' + viewbox + '&bounded=1'
+      + '&q=' + encodeURIComponent(address);
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error('geocode request failed');
+    const data = await res.json();
+
+    let result = null;
+    let outOfRegion = false;
+    if (data.length){
+      const lat = parseFloat(data[0].lat);
+      const lng = parseFloat(data[0].lon);
+      if (inRegion(lat, lng)){
+        result = { lat, lng };
+      } else {
+        outOfRegion = true; // shouldn't normally happen since bounded=1 restricts the search, but double-check
+      }
+    }
+
+    geocodeCache[key] = outOfRegion ? 'out-of-region' : result; // cache misses (null/out-of-region) too, so a bad address isn't retried every load
+    saveLocalCache();
+    return { result, fromCache: false, outOfRegion };
+  }
+
+  function clearGeocodeCache(){
+    for (const k in geocodeCache) delete geocodeCache[k];
+    try { localStorage.removeItem(CACHE_KEY); } catch(e){}
+  }
+
+  function exportGeocodeCache(){
+    const blob = new Blob([JSON.stringify(geocodeCache, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = REPO_CACHE_FILENAME;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function geocodeAll(){
+    let done = 0;
+    let cacheHits = 0;
+    setStatus('Geocoding 0 / ' + jobs.length, 0);
+
+    for (let i = 0; i < jobs.length; i++){
+      const j = jobs[i];
+      let hitCache = false;
+      try {
+        const { result, fromCache, outOfRegion } = await geocodeAddress(j.address);
+        hitCache = fromCache;
+        if (fromCache) cacheHits++;
+        if (result){
+          j.status = 'ok';
+          j.lat = result.lat;
+          j.lng = result.lng;
+          addMarker(j);
+        } else if (outOfRegion){
+          j.status = 'failed';
+          j.note = 'Outside lower North Island';
+        } else {
+          j.status = 'failed';
+          j.note = 'Address not found';
+        }
+      } catch(err){
+        j.status = 'failed';
+        j.note = 'Lookup failed';
+      }
+      done++;
+      setStatus('Geocoding ' + done + ' / ' + jobs.length + (cacheHits ? '  ·  ' + cacheHits + ' from cache' : ''), (done / jobs.length) * 100);
+      renderList();
+      // Only throttle for addresses that actually hit the network — cached
+      // results don't need to respect Nominatim's rate limit.
+      if (!hitCache && i < jobs.length - 1) await sleep(1000);
+    }
+
+    clearStatus();
+    fitToMarkers();
+    const okCount = jobs.filter(j => j.status === 'ok').length;
+    uploadSecondary.textContent = okCount + ' / ' + jobs.length + ' mapped';
+  }
+
+  function addMarker(j){
+    const marker = L.marker([j.lat, j.lng], { icon: pinIcon(colorForType(j.type)) });
+    marker.bindPopup(
+      '<div class="popup-job">JOB ' + escapeHtml(j.job) + (j.type ? ' &middot; ' + escapeHtml(j.type.toUpperCase()) : '') + '</div>' +
+      '<div>' + escapeHtml(j.address) + '</div>'
+    );
+    marker.addTo(markersLayer);
+    markers[j.job] = marker;
+  }
+
+  function fitToMarkers(){
+    const latlngs = jobs.filter(j => j.status === 'ok').map(j => [j.lat, j.lng]);
+    if (latlngs.length === 1){
+      map.setView(latlngs[0], 14);
+    } else if (latlngs.length > 1){
+      map.fitBounds(L.latLngBounds(latlngs), { padding: [40, 40] });
+    }
+  }
+
+  function escapeHtml(str){
+    return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---------- List rendering ----------
+  let activeJob = null;
+
+  function renderList(){
+    const okCount = jobs.filter(j => j.status === 'ok').length;
+    listCount.textContent = okCount + ' / ' + jobs.length + ' mapped';
+
+    const statusOrder = { failed: 0, pending: 1, ok: 2 };
+    const displayJobs = [...jobs].sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+
+    jobList.innerHTML = '';
+    displayJobs.forEach(j => {
+      const row = document.createElement('div');
+      row.className = 'job-row' + (j.status === 'failed' ? ' failed' : '') + (activeJob === j.job ? ' active' : '');
+      row.innerHTML =
+        '<div class="job-tag">' + escapeHtml(j.job) + '</div>' +
+        '<div class="job-info">' +
+          '<div class="job-address">' + escapeHtml(j.address) + '</div>' +
+          (j.note ? '<div class="job-note">' + escapeHtml(j.note) + '</div>' : (j.status === 'pending' ? '<div class="job-note" style="color:var(--text-faint)">Locating…</div>' : '')) +
+        '</div>';
+      row.addEventListener('click', () => {
+        if (j.status !== 'ok') return;
+        activeJob = j.job;
+        map.setView([j.lat, j.lng], 15, { animate: true });
+        markers[j.job].openPopup();
+        renderList();
+      });
+      jobList.appendChild(row);
+    });
+  }
+})();
+</script>
+</body>
+</html>

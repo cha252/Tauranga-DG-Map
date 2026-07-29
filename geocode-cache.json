@@ -1,0 +1,690 @@
+{
+  "346 botanical road, palmerston north": {
+    "lat": -40.3671256,
+    "lng": 175.5969975
+  },
+  "14 parnell heights drive , kelvin grove, palmerston north, 4414": {
+    "lat": -40.3200006,
+    "lng": 175.6558625
+  },
+  "663 chester road , west taratahi, carterton, 5791": {
+    "lat": -40.951153,
+    "lng": 175.5472305
+  },
+  "11 te ore ore bideford road , te ore ore, masterton, 5886": {
+    "lat": -40.9487351,
+    "lng": 175.6962249
+  },
+  "32 tama road , riversdale beach, masterton, 5872": {
+    "lat": -41.0932549,
+    "lng": 176.062473
+  },
+  "39a weld street , martinborough, martinborough, 5711": {
+    "lat": -41.2211278,
+    "lng": 175.4508877
+  },
+  "9 fairway dr , martinborough, martinborough, 5784": {
+    "lat": -41.232269,
+    "lng": 175.4680052
+  },
+  "219b glenmorven road , morison bush, greytown, 5794": {
+    "lat": -41.1464887,
+    "lng": 175.4765521
+  },
+  "274 high street north , carterton, 5713": {
+    "lat": -41.0182904,
+    "lng": 175.5350676
+  },
+  "433b waiohine gorge road , carterton, 5791": {
+    "lat": -41.0396382,
+    "lng": 175.3973772
+  },
+  "1 tamarisk dr , masterton": {
+    "lat": -41.0977492,
+    "lng": 176.0677795
+  },
+  "17 homestead lane , greytown, greytown, 5712": {
+    "lat": -41.0692033,
+    "lng": 175.4558908
+  },
+  "70b dublin street , martinborough, 5711": {
+    "lat": -41.2230405,
+    "lng": 175.4571853
+  },
+  "64 cornwall street , masterton, 5810": {
+    "lat": -40.9525104,
+    "lng": 175.6433822
+  },
+  "2 viscount place, west end, palmerston north, 4412": {
+    "lat": -40.3653467,
+    "lng": 175.5965079
+  },
+  "9 puketiro drive, feilding, 4702": {
+    "lat": -40.2199126,
+    "lng": 175.5554958
+  },
+  "69 kereru drive, turitea, palmerston north, 4472": {
+    "lat": -40.4166965,
+    "lng": 175.658743
+  },
+  "9 heathcote place, fitzherbert, palmerston north, 4410": {
+    "lat": -40.3825397,
+    "lng": 175.6293614
+  },
+  "180b pharazyn road, feilding, 4777": {
+    "lat": -40.1904482,
+    "lng": 175.6072319
+  },
+  "1 cotterville crescent, greytown, 5712": {
+    "lat": -41.0899378,
+    "lng": 175.448368
+  },
+  "13 mervyn brown place, solway, masterton, 5810": {
+    "lat": -40.9601285,
+    "lng": 175.6199436
+  },
+  "4 huffington place, feilding, feilding, 4702": {
+    "lat": -40.2127876,
+    "lng": 175.5858249
+  },
+  "15 ron place, fitzherbert, palmerston north, 4410": {
+    "lat": -40.3908291,
+    "lng": 175.6494416
+  },
+  "4 stonebridge heights, feilding, 4702": {
+    "lat": -40.2120413,
+    "lng": 175.5596793
+  },
+  "41 escort grove, awapuni, palmerston north, 4412": {
+    "lat": -40.3834654,
+    "lng": 175.5847651
+  },
+  "221b state highway 2, opaki, masterton, 5871": {
+    "lat": -40.9263334,
+    "lng": 175.6710933
+  },
+  "16 papawai road, greytown": {
+    "lat": -41.0884764,
+    "lng": 175.4552985
+  },
+  "8 gratitude way, kelvin grove, palmerston north, 4470": {
+    "lat": -40.3332186,
+    "lng": 175.6637588
+  },
+  "26 makopua road, taoroa junction": {
+    "lat": -39.7494242,
+    "lng": 175.9180984
+  },
+  "45a sherwill street east, feilding, 4702": {
+    "lat": -40.2117806,
+    "lng": 175.5779411
+  },
+  "17 wescombe grove, feilding, 4702": {
+    "lat": -40.211832,
+    "lng": 175.5648043
+  },
+  "27 railway road, palmerston north": {
+    "lat": -40.2831406,
+    "lng": 175.6305856
+  },
+  "8 sardinia grove, fitzherbert, palmerston north": {
+    "lat": -40.3972908,
+    "lng": 175.6601353
+  },
+  "15 cardiff street, awapuni, palmerston north, 4412": {
+    "lat": -40.3667859,
+    "lng": 175.5903859
+  },
+  "6 castlebridge lane, aokautere, palmerston north, 4471": {
+    "lat": -40.3725905,
+    "lng": 175.6858675
+  },
+  "43 coutts way, fitzherbert, palmerston north, 4410": {
+    "lat": -40.3823255,
+    "lng": 175.6472963
+  },
+  "39 craigmillar street, solway, masterton": {
+    "lat": -40.9671864,
+    "lng": 175.6234488
+  },
+  "688 aranui road, kairanga": {
+    "lat": -40.3344095,
+    "lng": 175.5163372
+  },
+  "506 longbush road, hinakura": {
+    "lat": -41.2094949,
+    "lng": 175.5762941
+  },
+  "56 frederick st, carterton": {
+    "lat": -41.0366283,
+    "lng": 175.5064795
+  },
+  "214a dry river road, dyerville": {
+    "lat": -41.2706172,
+    "lng": 175.4098049
+  },
+  "682 roberts line, palmerston north": {
+    "lat": -40.3107736,
+    "lng": 175.6333045
+  },
+  "69 duncan road, rongotea": {
+    "lat": -40.3371552,
+    "lng": 175.4439854
+  },
+  "45 abraham crescent, milson": {
+    "lat": -40.3300079,
+    "lng": 175.6114529
+  },
+  "479 ngaio road, halcombe": {
+    "lat": -40.1763527,
+    "lng": 175.4236613
+  },
+  "66 pearce street, halcombe": {
+    "lat": -40.1366978,
+    "lng": 175.4954853
+  },
+  "2562 homewood road, masterton": {
+    "lat": -41.1402249,
+    "lng": 175.9916297
+  },
+  "18 ataahua place, featherston": null,
+  "241 kahuterawa road, linton": {
+    "lat": -40.4233452,
+    "lng": 175.6250533
+  },
+  "728 taonui road": {
+    "lat": -40.2129085,
+    "lng": 175.6642095
+  },
+  "769a state highway 2, masterton": {
+    "lat": -40.8789589,
+    "lng": 175.6554511
+  },
+  "324 moreton road, carterton": {
+    "lat": -41.0529877,
+    "lng": 175.5478566
+  },
+  "junction road, halcombe": {
+    "lat": -40.1244572,
+    "lng": 175.5191981
+  },
+  "nga waka winery, martinborough": null,
+  "881c norfolk road, carterton": {
+    "lat": -40.9071587,
+    "lng": 175.5372429
+  },
+  "60e skeets road, masterton": {
+    "lat": -40.932222,
+    "lng": 175.5901061
+  },
+  "23 fry road, halcombe": {
+    "lat": -40.138042,
+    "lng": 175.614908
+  },
+  "44 lincoln street, ashhurst": {
+    "lat": -40.287335,
+    "lng": 175.7577203
+  },
+  "7 oak cres, ashhurst": {
+    "lat": -40.2808243,
+    "lng": 175.7591703
+  },
+  "1055 valley rd, ashhurst": {
+    "lat": -40.2056986,
+    "lng": 175.7754648
+  },
+  "1 bristow street, saint johns hill": {
+    "lat": -39.9176993,
+    "lng": 175.032184
+  },
+  "95 mingaroa road, halcombe": {
+    "lat": -40.1414883,
+    "lng": 175.4516912
+  },
+  "83 ngahere park road, palmerston north": {
+    "lat": -40.4160904,
+    "lng": 175.653744
+  },
+  "48 woodward street east, featherston": {
+    "lat": -41.1219096,
+    "lng": 175.3221745
+  },
+  "94 lake domain road, featherston": {
+    "lat": -41.1593478,
+    "lng": 175.3122893
+  },
+  "68 london street, kimbolton": {
+    "lat": -40.0533338,
+    "lng": 175.7723452
+  },
+  "11 moore street, featherston": {
+    "lat": -41.1171101,
+    "lng": 175.3181673
+  },
+  "12 cherry lane, martinborough": {
+    "lat": -41.2267172,
+    "lng": 175.451189
+  },
+  "6b prendiville lane, greytown": {
+    "lat": -41.0826373,
+    "lng": 175.4496123
+  },
+  "67 naples street, martinborough": {
+    "lat": -41.2206063,
+    "lng": 175.459692
+  },
+  "73a reading street, greytown": {
+    "lat": -41.0831392,
+    "lng": 175.4618615
+  },
+  "19 mcmaster street, greytown": {
+    "lat": -41.0817,
+    "lng": 175.4642573
+  },
+  "621 lake ferry road, martinborough": {
+    "lat": -41.2524063,
+    "lng": 175.3997919
+  },
+  "2 churchill crescent, featherston": {
+    "lat": -41.1093818,
+    "lng": 175.3247659
+  },
+  "38 cologne street, martinborough": {
+    "lat": -41.2166209,
+    "lng": 175.4613375
+  },
+  "34 jellicoe street, martinborough": {
+    "lat": -41.2196297,
+    "lng": 175.4575004
+  },
+  "143 watershed road, bunnythorpe": {
+    "lat": -40.2758511,
+    "lng": 175.7002033
+  },
+  "685 kairanga bunnythorpe road": {
+    "lat": -40.3230334,
+    "lng": 175.5695029
+  },
+  "231 valley views, palmerston north": {
+    "lat": -40.3991392,
+    "lng": 175.6515924
+  },
+  "326 creek road, whanganui": {
+    "lat": -39.8076004,
+    "lng": 175.393495
+  },
+  "99a lees pakaraka road, masterton": {
+    "lat": -40.9811499,
+    "lng": 175.7161905
+  },
+  "67a perry street, masterton": {
+    "lat": -40.9465107,
+    "lng": 175.6563984
+  },
+  "80 west street, greytown": {
+    "lat": -41.0785688,
+    "lng": 175.4603325
+  },
+  "26 romina way, martinborough": {
+    "lat": -41.2382467,
+    "lng": 175.4439473
+  },
+  "985 parewanui road, bulls": {
+    "lat": -40.2345458,
+    "lng": 175.3181035
+  },
+  "9 kaka road, taihape": {
+    "lat": -39.6823477,
+    "lng": 175.7960592
+  },
+  "15 wapiti avenue, feilding": {
+    "lat": -40.1961894,
+    "lng": 175.5526736
+  },
+  "89 dublin street, martinborough": {
+    "lat": -41.2237149,
+    "lng": 175.4592304
+  },
+  "10 tangaroa view, whanganui": {
+    "lat": -39.9089591,
+    "lng": 175.0174539
+  },
+  "21 waipounamu street, whanganui": {
+    "lat": -40.0414178,
+    "lng": 175.1755437
+  },
+  "1933 sh 3, turakina": {
+    "lat": -40.0794227,
+    "lng": 175.241973
+  },
+  "the lido": null,
+  "49 hereford street, whanganui": {
+    "lat": -39.9235078,
+    "lng": 175.0161783
+  },
+  "3 paterson lane, kelvin grove": {
+    "lat": -40.3032769,
+    "lng": 175.6808226
+  },
+  "1853 rongotea road, rongotea": {
+    "lat": -40.3617659,
+    "lng": 175.5519889
+  },
+  "4 wake place, aokautere": {
+    "lat": -40.375965,
+    "lng": 175.6550946
+  },
+  "5 castlebridge lane, aokautere": {
+    "lat": -40.3725269,
+    "lng": 175.6854753
+  },
+  "289 kairanga bunnythorpe road": {
+    "lat": -40.2992963,
+    "lng": 175.6043382
+  },
+  "389a bluff rangitumau road": {
+    "lat": -40.8666687,
+    "lng": 175.6887587
+  },
+  "1727 state highway 2": {
+    "lat": -40.7969992,
+    "lng": 175.6123306
+  },
+  "57 white rock road, martinborough": {
+    "lat": -41.2327277,
+    "lng": 175.4468142
+  },
+  "16 madden place, masterton": {
+    "lat": -40.9657039,
+    "lng": 175.637158
+  },
+  "208 smiths road, ohakune": {
+    "lat": -39.4398536,
+    "lng": 175.3547421
+  },
+  "8 toia street, marton": {
+    "lat": -40.077649,
+    "lng": 175.3778471
+  },
+  "49 weld street, martinborough": {
+    "lat": -41.2223749,
+    "lng": 175.4515267
+  },
+  "171 great north road, otamatea": {
+    "lat": -39.9083779,
+    "lng": 175.0200904
+  },
+  "16 mersey street, rongotea": {
+    "lat": -40.2911861,
+    "lng": 175.4260471
+  },
+  "11 springwater drive, feilding": {
+    "lat": -40.2024952,
+    "lng": 175.577493
+  },
+  "10 malcolm street, martinborough": {
+    "lat": -41.2227374,
+    "lng": 175.45515
+  },
+  "43 taranaki street, masterton": {
+    "lat": -40.962809,
+    "lng": 175.6488212
+  },
+  "54 richmond road, carterton": {
+    "lat": -41.0322689,
+    "lng": 175.5285728
+  },
+  "353 kahuterawa road, linton": {
+    "lat": -40.4308357,
+    "lng": 175.6226369
+  },
+  "290d dakins road, carterton": {
+    "lat": -41.0496461,
+    "lng": 175.6293869
+  },
+  "57 somerset road, springvale": {
+    "lat": -39.9249208,
+    "lng": 175.0238441
+  },
+  "12 plimsoll street, carterton": {
+    "lat": -41.0191458,
+    "lng": 175.5348656
+  },
+  "15 john mcdonald mews, masterton": {
+    "lat": -40.9562825,
+    "lng": 175.6612383
+  },
+  "46d cromarty drive, martinborough": {
+    "lat": -41.2332585,
+    "lng": 175.47554
+  },
+  "15 roger renall avenue, lansdowne": {
+    "lat": -40.9330188,
+    "lng": 175.6700388
+  },
+  "14 wakefield street, featherston": {
+    "lat": -41.1154716,
+    "lng": 175.3231315
+  },
+  "17 richmond road, carterton": {
+    "lat": -41.029904,
+    "lng": 175.5251496
+  },
+  "215 calico line, marton": {
+    "lat": -40.0674458,
+    "lng": 175.4039401
+  },
+  "24 ardsley lane, lansdowne": {
+    "lat": -40.9248395,
+    "lng": 175.6844761
+  },
+  "10 alton grove, masterton": {
+    "lat": -40.9542748,
+    "lng": 175.6446646
+  },
+  "110 port street east, feilding": {
+    "lat": -40.2083861,
+    "lng": 175.5795815
+  },
+  "1009 taonui road, colyton": {
+    "lat": -40.1960379,
+    "lng": 175.6820967
+  },
+  "21 waharua place, tawhero": {
+    "lat": -39.9299158,
+    "lng": 175.0155323
+  },
+  "1 nelsons road, martinborough": {
+    "lat": -41.2077144,
+    "lng": 175.4623424
+  },
+  "48 raetihi ohakune road, raetihi": {
+    "lat": -39.4288856,
+    "lng": 175.2871962
+  },
+  "46 tongariro street, castlecliff": {
+    "lat": -39.943255,
+    "lng": 175.0020852
+  },
+  "willow park drive, opaki": {
+    "lat": -40.9022912,
+    "lng": 175.6749068
+  },
+  "329 chester road, carterton": {
+    "lat": -40.9801841,
+    "lng": 175.5410632
+  },
+  "5 mervyn brown place, solway": {
+    "lat": -40.9593289,
+    "lng": 175.6198015
+  },
+  "18 moore crescent, carterton": {
+    "lat": -41.0383973,
+    "lng": 175.5181548
+  },
+  "9 third street, masterton": {
+    "lat": -40.939555,
+    "lng": 175.6724673
+  },
+  "82 brandon street, featherston": {
+    "lat": -41.1210784,
+    "lng": 175.3251309
+  },
+  "45a murphys line, featherston": {
+    "lat": -41.1288264,
+    "lng": 175.336109
+  },
+  "15 kākāriki crescent, carterton": {
+    "lat": -41.01473,
+    "lng": 175.52637
+  },
+  "46a main street, greytown": {
+    "lat": -41.0761494,
+    "lng": 175.465144
+  },
+  "431c te kopi road, te whiti": {
+    "lat": -41.0409532,
+    "lng": 175.699182
+  },
+  "50 brooklyn road, carterton": {
+    "lat": -41.0312443,
+    "lng": 175.515869
+  },
+  "2 horton street, greytown": {
+    "lat": -41.0800041,
+    "lng": 175.4670141
+  },
+  "13 donald street, featherston": {
+    "lat": -41.1207382,
+    "lng": 175.3325616
+  },
+  "52b willow park drive, masterton": {
+    "lat": -40.9075713,
+    "lng": 175.6725308
+  },
+  "129b kent street, carterton": {
+    "lat": -41.0137509,
+    "lng": 175.5215337
+  },
+  "201 masterton castlepoint road, te ore ore": {
+    "lat": -40.9575889,
+    "lng": 175.7142239
+  },
+  "78 lake domain road, featherston": {
+    "lat": -41.1601446,
+    "lng": 175.3137214
+  },
+  "21 feist street, carterton": {
+    "lat": -41.0216822,
+    "lng": 175.5362349
+  },
+  "117 chester road, carterton": {
+    "lat": -40.998815,
+    "lng": 175.5454293
+  },
+  "20 carrington drive, carterton": {
+    "lat": -41.0120389,
+    "lng": 175.5283283
+  },
+  "90e paierau road, masterton": {
+    "lat": -40.9240988,
+    "lng": 175.6484889
+  },
+  "26a south belt, solway": {
+    "lat": -40.9638444,
+    "lng": 175.6264923
+  },
+  "55 herbert street, masterton": {
+    "lat": -40.9605903,
+    "lng": 175.6562212
+  },
+  "142a dublin street, martinborough": {
+    "lat": -41.2313333,
+    "lng": 175.458236
+  },
+  "12 campbell drive, martinborough": {
+    "lat": -41.2303513,
+    "lng": 175.4484711
+  },
+  "570 roberts line, kelvin grove": {
+    "lat": -40.3179757,
+    "lng": 175.6411167
+  },
+  "152 turitea road, turitea": {
+    "lat": -40.4001712,
+    "lng": 175.6447699
+  },
+  "101 upper manaia road, solway": {
+    "lat": -40.953226,
+    "lng": 175.603498
+  },
+  "16 parkers road, carterton": {
+    "lat": -40.9412443,
+    "lng": 175.5572905
+  },
+  "5 ferndale place, feilding": {
+    "lat": -40.2308523,
+    "lng": 175.5558486
+  },
+  "346 state highway 1, foxton": {
+    "lat": -40.4345525,
+    "lng": 175.3009085
+  },
+  "499 taikorea road, glen oroua": {
+    "lat": -40.361281,
+    "lng": 175.3869063
+  },
+  "22 south street, feilding": {
+    "lat": -40.2282204,
+    "lng": 175.5579798
+  },
+  "95 pyke road, rangitou": null,
+  "2 kaka street, masterton": {
+    "lat": -40.9563862,
+    "lng": 175.6614535
+  },
+  "722 upper plain road, masterton": {
+    "lat": -40.9134,
+    "lng": 175.568671
+  },
+  "20 langley avenue, milson": {
+    "lat": -40.3301743,
+    "lng": 175.6079376
+  },
+  "243 napier road, kelvin grove": {
+    "lat": -40.3390222,
+    "lng": 175.6485692
+  },
+  "124 works road, longburn": {
+    "lat": -40.392284,
+    "lng": 175.5468516
+  },
+  "43 fitzherbert street, featherston": {
+    "lat": -41.1171207,
+    "lng": 175.3256111
+  },
+  "87a worcester street, ashhurst": {
+    "lat": -40.2861452,
+    "lng": 175.7533811
+  },
+  "30a mcmaster street, greytown": {
+    "lat": -41.0822586,
+    "lng": 175.4636561
+  },
+  "429a black rock road, masterton": {
+    "lat": -40.9152768,
+    "lng": 175.7042207
+  },
+  "27a parrs road, bunnythorpe, 4470": {
+    "lat": -40.2914968,
+    "lng": 175.6357292
+  },
+  "1c wyndham street, ashhurst, 4810": {
+    "lat": -40.2848324,
+    "lng": 175.7622861
+  },
+  "11 humphries street, greytown": {
+    "lat": -41.0858183,
+    "lng": 175.45156
+  }
+}
