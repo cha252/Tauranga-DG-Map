@@ -16,11 +16,11 @@ import * as XLSX from 'xlsx';
 const SPREADSHEET_CANDIDATES = ['DGS LIST.xlsx', 'DGS LIST.xls', 'DGS LIST.csv'];
 const CACHE_FILE = 'geocode-cache.json';
 
-// Roughly Coromandel Peninsula down through the Hauraki Plains, eastern
-// Waikato, and western Bay of Plenty (Tauranga) — north of Taupō, on the
-// eastern side of the North Island. West, South, East, North in lon/lat.
-// Keep this in sync with NZ_TARGET_BBOX in index.html.
-const NZ_TARGET_BBOX = { west: 175.0, south: -38.75, east: 176.9, north: -36.35 };
+// Roughly Coromandel Peninsula (tip to base), South Waikato, and the
+// western Bay of Plenty including Tauranga / Mount Maunganui, with some
+// extra margin around each — north of Taupō, on the eastern side of the
+// North Island. Keep this in sync with NZ_TARGET_BBOX in index.html.
+const NZ_TARGET_BBOX = { west: 174.7, south: -39.2, east: 177.3, north: -36.0 };
 
 // A descriptive User-Agent identifying this script is required by
 // Nominatim's usage policy for automated/scripted use.
