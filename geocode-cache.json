@@ -686,5 +686,377 @@
   "11 humphries street, greytown": {
     "lat": -41.0858183,
     "lng": 175.45156
+  },
+  "101 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "102 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "103 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "g09 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g08 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g07 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g06 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g05 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g04 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g03 19 tebbs lane , gate pa, tauranga, 3112": null,
+  "g02 19 tebbs lane , gate pa, taruranga, 3112": null,
+  "g01 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "109 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "108 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "107 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "106 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "105 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "104 19 tebbs lane , gate pa, tauranga, 3112": {
+    "lat": -37.7167877,
+    "lng": 176.1444524
+  },
+  "186 mansels road, parkvale, tauranga, 3112": {
+    "lat": -37.7205312,
+    "lng": 176.1413736
+  },
+  "96 esdaile road , tauranga, 3180": null,
+  "37 unutoto place , tauriko, tauranga, 3171": {
+    "lat": -37.75387,
+    "lng": 176.093763
+  },
+  "361 paeroa-tahuna road, springdale, waitoa, 3380": null,
+  "315 paeroa-tahuna road, tahuna, tahuna": {
+    "lat": -37.5127834,
+    "lng": 175.515054
+  },
+  "315 paeroa-tahuna road, springdale, waitoa, 3380": null,
+  "307 barrowclough road , whangamata, 3620": {
+    "lat": -37.2002491,
+    "lng": 175.8725483
+  },
+  "22 patetere street , tirau, 3410": {
+    "lat": -37.974035,
+    "lng": 175.757437
+  },
+  "75 chapel street , otumoetai, tauranga, 3110": {
+    "lat": -37.6708067,
+    "lng": 176.1601257
+  },
+  "35 coast boulevard , papamoa beach, tauranga, 3118": {
+    "lat": -37.6843969,
+    "lng": 176.2503336
+  },
+  "10 lewis street , paeroa, 3600": {
+    "lat": -37.3829614,
+    "lng": 175.678891
+  },
+  "10 beatty avenue , te puke, 3119": {
+    "lat": -37.7836126,
+    "lng": 176.3197393
+  },
+  "h3 1559 rangiuru road , te puke, 3188": null,
+  "638 morrinsville-walton road, morrinsville, 3371": {
+    "lat": -37.706444,
+    "lng": 175.561531
+  },
+  "12 grant place , matamata, 3400": {
+    "lat": -37.8060548,
+    "lng": 175.77755
+  },
+  "10 villosa court , papamoa beach, papamoa, 3118": {
+    "lat": -37.721061,
+    "lng": 176.3280543
+  },
+  "61 lowe road , tauranga, 3180": null,
+  "50 smiths road , matua, tauranga, 3110": {
+    "lat": -37.6683772,
+    "lng": 176.1207128
+  },
+  "472 lund road, aongatete, katikati": null,
+  "402h crawford road , wairoa, tauranga, 3171": null,
+  "331 plummers point road, whakamarama": {
+    "lat": -37.6580854,
+    "lng": 176.0469817
+  },
+  "59 partridge lane , te puke, 3189": null,
+  "103 graham street , thames": {
+    "lat": -37.1377343,
+    "lng": 175.5515791
+  },
+  "107 whitehead way , thames, 3500": {
+    "lat": -37.1570576,
+    "lng": 175.5655302
+  },
+  "13 aquila drive , whitianga, 3510": {
+    "lat": -36.8355347,
+    "lng": 175.6919736
+  },
+  "333b pahoia road , whakamarama, tauranga, 3172": null,
+  "393 pukehina parade , te puke, 3189": null,
+  "58 reel road , waihi beach, 3611": {
+    "lat": -37.4298654,
+    "lng": 175.9537035
+  },
+  "19 esk street , parkvale, tauranga, 3112": {
+    "lat": -37.7228262,
+    "lng": 176.1463094
+  },
+  "10 montego drive , papamoa beach, papamoa, 3118": {
+    "lat": -37.6995418,
+    "lng": 176.2775477
+  },
+  "30 te puna quarry road , minden, tauranga, 3179": null,
+  "42 leyland road , tauranga, 3179": null,
+  "33 holyoake tce , omokoroa, tauranga, 3172": null,
+  "33 second avenue , waihou, 3393": {
+    "lat": -37.5734877,
+    "lng": 175.6780367
+  },
+  "82 gravatt road , papamoa beach, papamoa, 3118": {
+    "lat": -37.6998773,
+    "lng": 176.2755519
+  },
+  "9b no 2 road , te puke, 3182": {
+    "lat": -37.8024777,
+    "lng": 176.3183043
+  },
+  "35 black road , te puke, 3189": null,
+  "16 amery place , papamoa beach, papamoa, 3118": {
+    "lat": -37.7057176,
+    "lng": 176.2819664
+  },
+  "136 phillips dr , oropi, tauranga, 3173": {
+    "lat": -37.756406,
+    "lng": 176.1353005
+  },
+  "29 kotiate street , papamoa beach, tauranga, 3118": {
+    "lat": -37.7235927,
+    "lng": 176.3442243
+  },
+  "5 wenlock street , waihi, 3610": {
+    "lat": -37.3810847,
+    "lng": 175.8582643
+  },
+  "103 beach road , matua, tauranga, 3110": {
+    "lat": -37.6633324,
+    "lng": 176.1410741
+  },
+  "19 gardenia drive , mount maunganui, 3116": {
+    "lat": -37.6789659,
+    "lng": 176.2379648
+  },
+  "1 waimanu lane , bethlehem, tauranga, 3110": {
+    "lat": -37.7092156,
+    "lng": 176.1089646
+  },
+  "10 tohetea lane , wharekaho, whitianga, 3592": null,
+  "3 chevron drive , bellevue, tauranga, 3110": {
+    "lat": -37.6672538,
+    "lng": 176.137382
+  },
+  "58 ritchie street , te aroha, te aroha, 3320": {
+    "lat": -37.5417447,
+    "lng": 175.6978433
+  },
+  "46 sorrento key , papamoa beach, papamoa, 3118": {
+    "lat": -37.7005974,
+    "lng": 176.2755964
+  },
+  "204a valley road , mount maunganui, 3116": {
+    "lat": -37.6589818,
+    "lng": 176.209412
+  },
+  "1254 kennedy bay road , kennedy bay, coromandel, 3583": {
+    "lat": -36.6830544,
+    "lng": 175.5495047
+  },
+  "1397 wiltsdown road , waotu, putaruru, 3481": null,
+  "28 mossop road , tokoroa, 3491": {
+    "lat": -38.2239462,
+    "lng": 175.8785715
+  },
+  "3 harbour view road , katikati, 3170": null,
+  "9 st heliers place, papamoa beach, papamoa, 3118": {
+    "lat": -37.7036935,
+    "lng": 176.2726083
+  },
+  "25b linley terrace, judea, tauranga, 3110": null,
+  "8 kinsella place , paeroa, 3600": {
+    "lat": -37.3790307,
+    "lng": 175.6823648
+  },
+  "88 oceanview road , mount maunganui, 3116": {
+    "lat": -37.6437341,
+    "lng": 176.1911911
+  },
+  "11 tohetea lane , wharekaho, whitianga, 3510": null,
+  "23 dunbar place, strathmore, tokoroa, 3420": {
+    "lat": -38.2332201,
+    "lng": 175.8685885
+  },
+  "26 wairakei avenue , papamoa beach, papamoa, 3118": {
+    "lat": -37.7168502,
+    "lng": 176.3383184
+  },
+  "7 laing place , otumoetai, tauranga, 3110": {
+    "lat": -37.6667391,
+    "lng": 176.1420602
+  },
+  "121 boucher avenue , te puke, 3119": {
+    "lat": -37.7923694,
+    "lng": 176.3232858
+  },
+  "87 pillans road, otumoetai, tauranga, 3110": {
+    "lat": -37.6748756,
+    "lng": 176.1515255
+  },
+  "428 otumoetai road, brookfield, tauranga": {
+    "lat": -37.6935223,
+    "lng": 176.1351326
+  },
+  "52 kauaeranga valley road , thames, 3577": {
+    "lat": -37.1587656,
+    "lng": 175.5866609
+  },
+  "15 bedford place , tokoroa, 3420": {
+    "lat": -38.2050736,
+    "lng": 175.8659417
+  },
+  "19 oak drive , te puke, 3188": null,
+  "197 stewart road , katikati, 3181": null,
+  "222 plummers point road , omokoroa, 3172": {
+    "lat": -37.6667917,
+    "lng": 176.0415203
+  },
+  "73 townhead crescent , bethlehem, tauranga, 3110": {
+    "lat": -37.7069863,
+    "lng": 176.1311818
+  },
+  "1314 omanawa road , tauranga, 3171": null,
+  "135d mclaren falls road , lower kaimai, 3171": {
+    "lat": -37.8047488,
+    "lng": 176.0508248
+  },
+  "403 oceanbeach road , mount maunganui, 3116": {
+    "lat": -37.6729564,
+    "lng": 176.2361108
+  },
+  "35 te ranga memorial drive , pyes pa, tauranga, 3173": {
+    "lat": -37.7571278,
+    "lng": 176.1091383
+  },
+  "713 tararu road , thames, 3500": {
+    "lat": -37.1157271,
+    "lng": 175.5239896
+  },
+  "448a oceanbeach road, papamoa, 3116": null,
+  "36 kaiora drive , papamoa beach, tauranga, 3118": {
+    "lat": -37.7197101,
+    "lng": 176.3194332
+  },
+  "30 evans street , morrinsville, 3300": {
+    "lat": -37.6402959,
+    "lng": 175.5285689
+  },
+  "57 maungawhare place , otumoetai, tauranga, 3110": {
+    "lat": -37.678013,
+    "lng": 176.139383
+  },
+  "29 meadowviews drive , welcome bay, tauranga, 3112": {
+    "lat": -37.7262812,
+    "lng": 176.1809518
+  },
+  "3 seaview road , otumoetai, tauranga, 3110": {
+    "lat": -37.6723518,
+    "lng": 176.1530174
+  },
+  "537 joyce road , tauranga, 3173": {
+    "lat": -37.771587,
+    "lng": 176.1282912
+  },
+  "29 pumpkin hill road , pumpkin hill, 3591": {
+    "lat": -36.9751342,
+    "lng": 175.8382917
+  },
+  "20 regent street , brookfield, tauranga, 3110": {
+    "lat": -37.6887004,
+    "lng": 176.1304518
+  },
+  "32 mervyn pl , ohauiti, tauranga, 3112": {
+    "lat": -37.7512038,
+    "lng": 176.1509153
+  },
+  "96a ainsworth road, minden 3179": {
+    "lat": -37.6978706,
+    "lng": 176.05694
+  },
+  "5 te hono street , maungatapu, tauranga, 3112": {
+    "lat": -37.7168679,
+    "lng": 176.1880081
+  },
+  "42 moorhouse street , morrinsville, 3300": {
+    "lat": -37.6580605,
+    "lng": 175.5300591
+  },
+  "129 valley road , mount maunganui, 3116": {
+    "lat": -37.6543706,
+    "lng": 176.2038377
+  },
+  "6 hiria crescent , papamoa beach, tauranga, 3175": {
+    "lat": -37.6853123,
+    "lng": 176.2464079
+  },
+  "78 franks way , papamoa beach, papamoa, 3175": {
+    "lat": -37.6897893,
+    "lng": 176.2432861
+  },
+  "235a oceanbeach road, mount maunganui": {
+    "lat": -37.6658162,
+    "lng": 176.2237656
+  },
+  "248 walton road, richmond downs, waikato region, new zealand": null,
+  "6 ernie way , mount maunganui, tauranga, 3116": {
+    "lat": -37.6823439,
+    "lng": 176.2292376
+  },
+  "37 pinehurst crescent , morrinsville, 3300": {
+    "lat": -37.640435,
+    "lng": 175.5310412
+  },
+  "63b gordon avenue , te aroha": {
+    "lat": -37.5546981,
+    "lng": 175.6999445
+  },
+  "457c kuranui road , morrinsville, 3372": {
+    "lat": -37.6689487,
+    "lng": 175.5128334
+  },
+  "75 freyberg street , otumoetai, tauranga, 3110": {
+    "lat": -37.6692957,
+    "lng": 176.1453018
+  },
+  "5 kokomo key , papamoa beach, papamoa, 3118": {
+    "lat": -37.695158,
+    "lng": 176.2683899
   }
 }
