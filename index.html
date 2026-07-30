@@ -22,6 +22,7 @@
     --teal: #4fb8a8;
     --red: #d9695f;
     --blue: #4f8fe0;
+    --green: #5fb85a;
     --font-display: 'Space Grotesk', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
   }
@@ -396,7 +397,7 @@
     <div id="brand">
       <div class="mark">JOB SITE MAPPER</div>
       <h1>Plot jobs from a spreadsheet</h1>
-      <p>Upload a workbook with <strong style="color:var(--text)">Job</strong> and <strong style="color:var(--text)">Site</strong> columns. Site addresses are geocoded and dropped as pins on the map. Only sites in the lower North Island are mapped.</p>
+      <p>Upload a workbook with <strong style="color:var(--text)">Job</strong> and <strong style="color:var(--text)">Site</strong> columns. Site addresses are geocoded and dropped as pins on the map. Only sites in Coromandel / Waikato / western Bay of Plenty (north of Taupō, eastern side of the North Island) are mapped.</p>
     </div>
 
     <div id="upload-zone">
@@ -433,8 +434,8 @@
   <div id="map-wrap">
     <div id="hint">Waiting for a spreadsheet. Columns needed: <span style="color:var(--text)">Job</span>, <span style="color:var(--text)">Site</span>.</div>
     <div id="legend">
-      <div class="legend-row"><span class="legend-dot" style="background:var(--red)"></span>OH &mdash; overhead</div>
-      <div class="legend-row"><span class="legend-dot" style="background:var(--blue)"></span>UG &mdash; underground</div>
+      <div class="legend-row"><span class="legend-dot" style="background:var(--green)"></span>OH &mdash; overhead</div>
+      <div class="legend-row"><span class="legend-dot" style="background:var(--red)"></span>UG &mdash; underground</div>
       <div class="legend-row" id="legend-other" style="display:none"><span class="legend-dot" style="background:var(--amber)"></span>Other / unspecified</div>
     </div>
     <div id="map"></div>
@@ -493,7 +494,7 @@
   const legend = document.getElementById('legend');
   const legendOther = document.getElementById('legend-other');
 
-  const map = L.map('map', { zoomControl: true, attributionControl: true }).setView([-40.4, 175.6], 7);
+  const map = L.map('map', { zoomControl: true, attributionControl: true }).setView([-37.6, 176.0], 8);
 
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS community',
@@ -512,7 +513,7 @@
 
   // Type -> pin color. OH = overhead (red), UG = underground (blue).
   // Anything else, or a missing Type column, falls back to amber.
-  const TYPE_COLORS = { OH: 'var(--red)', UG: 'var(--blue)' };
+  const TYPE_COLORS = { OH: 'var(--green)', UG: 'var(--red)' };
 
   function colorForType(type){
     const key = (type || '').trim().toUpperCase();
@@ -699,19 +700,22 @@
   // already have that address, then any new lookups get saved to
   // localStorage. Use "Export cache" to download the combined result as
   // geocode-cache.json and commit it back to the repo to share it.
-  // v2: added lower North Island region restriction, so old cached
-  // results (which weren't region-checked) are invalidated.
-  const CACHE_KEY = 'jobSiteMapper.geocodeCache.v2';
+  // v3: region changed from lower North Island to Coromandel / Waikato /
+  // western Bay of Plenty (north of Taupō, eastern side of North Island) —
+  // old cached results are invalidated since the boundary moved.
+  const CACHE_KEY = 'jobSiteMapper.geocodeCache.v3';
   const REPO_CACHE_FILENAME = 'geocode-cache.json';
   const geocodeCache = loadLocalCache();
 
-  // Roughly Whanganui / Manawatū / southern Hawke's Bay / Wairarapa /
-  // Wellington / Kapiti Coast. West, South, East, North in lon/lat.
-  const NZ_LOWER_NI_BBOX = { west: 174.2, south: -41.75, east: 177.0, north: -39.1 };
+  // Roughly Coromandel Peninsula (tip to base), South Waikato, and the
+  // western Bay of Plenty including Tauranga / Mount Maunganui, with some
+  // extra margin around each — north of Taupō, on the eastern side of the
+  // North Island. West, South, East, North in lon/lat.
+  const NZ_TARGET_BBOX = { west: 174.7, south: -39.2, east: 177.3, north: -36.0 };
 
   function inRegion(lat, lng){
-    return lat >= NZ_LOWER_NI_BBOX.south && lat <= NZ_LOWER_NI_BBOX.north &&
-           lng >= NZ_LOWER_NI_BBOX.west && lng <= NZ_LOWER_NI_BBOX.east;
+    return lat >= NZ_TARGET_BBOX.south && lat <= NZ_TARGET_BBOX.north &&
+           lng >= NZ_TARGET_BBOX.west && lng <= NZ_TARGET_BBOX.east;
   }
 
   function loadLocalCache(){
@@ -757,10 +761,21 @@
     const key = cacheKey(address);
     if (Object.prototype.hasOwnProperty.call(geocodeCache, key)){
       const cached = geocodeCache[key];
-      const outOfRegion = cached === 'out-of-region';
-      return { result: outOfRegion ? null : cached, fromCache: true, outOfRegion };
+      if (cached && typeof cached === 'object'){
+        // Re-check cached coordinates against the current region boundary —
+        // a cached hit from before the boundary changed could now fall
+        // outside it, or vice versa, without needing to re-query Nominatim.
+        const stillIn = inRegion(cached.lat, cached.lng);
+        return { result: stillIn ? cached : null, fromCache: true, outOfRegion: !stillIn };
+      }
+      if (cached !== 'out-of-region'){
+        // genuine "not found" from a previous lookup
+        return { result: null, fromCache: true, outOfRegion: false };
+      }
+      // cached === 'out-of-region': no coordinates were stored for the old
+      // boundary, so there's nothing to re-check — fall through and re-query.
     }
-    const bbox = NZ_LOWER_NI_BBOX;
+    const bbox = NZ_TARGET_BBOX;
     const viewbox = bbox.west + ',' + bbox.north + ',' + bbox.east + ',' + bbox.south;
     const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=nz'
       + '&viewbox=' + viewbox + '&bounded=1'
@@ -824,7 +839,7 @@
           addMarker(j);
         } else if (outOfRegion){
           j.status = 'failed';
-          j.note = 'Outside lower North Island';
+          j.note = 'Outside target region';
         } else {
           j.status = 'failed';
           j.note = 'Address not found';
